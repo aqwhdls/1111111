@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>논리 마피아</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="chat-container">
+    <!-- 상단 헤더 -->
+    <header class="chat-header">
+      <div class="header-info">
+        <h1>논리 마피아 (<span id="day-count">1</span>일 차)</h1>
+        <div class="status-badge">남은 기회: <span id="lives-count">♥♥♥</span></div>
+      </div>
+      <button id="evidence-btn" class="header-btn">단서 확인</button>
+    </header>
+
+    <!-- 용의자 메모 보드 (후보 / 제외 체크) -->
+    <section class="memo-board">
+      <div class="memo-title">용의자 추리 노트</div>
+      <div id="suspect-list" class="suspect-list">
+        <!-- JS에서 동적으로 생성됨 -->
+      </div>
+    </section>
+
+    <!-- 채팅 메시지 영역 -->
+    <main id="chat-box" class="chat-box"></main>
+
+    <!-- 하단 질문 선택 및 강퇴 시스템 -->
+    <footer class="chat-footer">
+      <div class="action-bar">
+        <select id="question-select">
+          <option value="">-- 질문을 선택하세요 --</option>
+          <option value="age">"다들 연령대가 어떻게 되시나요?" (나이 질문)</option>
+          <option value="speech">"주말에는 보통 뭐 하고 지내세요?" (말투 확인)</option>
+          <option value="hobby">"취미나 관심사가 궁금해요!" (성향 질문)</option>
+        </select>
+        <button id="send-btn">질문하기</button>
+      </div>
+      <div class="action-bar vote-bar">
+        <select id="suspect-select">
+          <option value="">-- 내보낼 대상 선택 --</option>
+        </select>
+        <button id="kick-btn" class="kick-btn">방에서 내보내기</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 단서 확인 모달 (카드/슬라이드 방식) -->
+  <div id="evidence-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>획득한 단서 (<span id="evidence-index">1</span>/<span id="evidence-total">2</span>)</h2>
+      
+      <div class="evidence-card">
+        <p id="evidence-text">단서를 불러오는 중...</p>
+      </div>
+
+      <div class="modal-nav">
+        <button id="prev-evidence-btn" class="nav-btn">이전</button>
+        <button id="next-evidence-btn" class="nav-btn">다음</button>
+      </div>
+
+      <button id="close-modal-btn" class="close-btn">닫기</button>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

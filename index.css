@@ -1,0 +1,301 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+body {
+  background-color: #b2c7da;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.chat-container {
+  width: 100%;
+  max-width: 450px;
+  height: 100vh;
+  max-height: 780px;
+  background-color: #abc1d1;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 헤더 */
+.chat-header {
+  background-color: #a0b6c6;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.chat-header h1 {
+  font-size: 15px;
+  color: #1e1e1e;
+}
+
+.status-badge {
+  font-size: 11px;
+  color: #e74c3c;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+.header-btn {
+  background-color: #fef01b;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* 용의자 추리 노트 (메모 보드) */
+.memo-board {
+  background-color: #92a8b9;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.memo-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+
+.suspect-list {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.suspect-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 65px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.suspect-card.status-candidate {
+  background-color: #fff3cd; /* 후보: 노란빛 */
+  border: 1px solid #ffeba2;
+}
+
+.suspect-card.status-exclude {
+  background-color: #e2e3e5; /* 제외: 회색 */
+  opacity: 0.6;
+}
+
+.suspect-avatar {
+  font-size: 18px;
+}
+
+.suspect-name {
+  font-size: 10px;
+  font-weight: bold;
+  margin: 2px 0 4px;
+}
+
+.status-btn {
+  font-size: 9px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #f8f9fa;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* 채팅창 */
+.chat-box {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.system-msg {
+  align-self: center;
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #fff;
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 12px;
+  margin: 4px 0;
+  text-align: center;
+}
+
+.msg-wrapper {
+  display: flex;
+  gap: 8px;
+  max-width: 85%;
+}
+
+.msg-wrapper.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.profile-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 14px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.msg-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 11px;
+  color: #4a4a4a;
+  margin-bottom: 3px;
+}
+
+.msg-bubble {
+  background-color: #ffffff;
+  padding: 8px 11px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #000;
+  word-break: break-word;
+}
+
+.msg-wrapper.user .msg-bubble {
+  background-color: #fef01b;
+}
+
+/* 하단 입력바 */
+.chat-footer {
+  background-color: #ffffff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.action-bar {
+  display: flex;
+  gap: 6px;
+}
+
+select {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #fef01b;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.95);
+}
+
+.kick-btn {
+  background-color: #ff5e5e;
+  color: white;
+}
+
+/* 단서 모달 (카드식 슬라이더) */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.modal-content h2 {
+  font-size: 15px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.evidence-card {
+  background-color: #f9f9f9;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  padding: 20px 15px;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.evidence-card p {
+  font-size: 13px;
+  color: #2c3e50;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.modal-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.nav-btn {
+  flex: 1;
+  background-color: #e2e3e5;
+  color: #333;
+}
+
+.close-btn {
+  width: 100%;
+  background-color: #4a4a4a;
+  color: #fff;
+}
